@@ -3,6 +3,7 @@ import './Header.css';
 
 export default class Header extends Component{
     render() {
+        const {toggleSwapiService} = this.props;
         return(<div className = "header d-flex">
             <h3>
                 <a href="#">
@@ -20,6 +21,10 @@ export default class Header extends Component{
                     <a href="#">Starships</a>
                 </li>
             </ul>
+            <button
+                className="btn btn-primary toggle-swapi-class"
+                onClick={toggleSwapiService}
+            >Toggle swapi service</button>
         </div>);
     }
 }

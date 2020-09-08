@@ -25,3 +25,7 @@
 .header h3 a:hover {
     color: #00bc8c;
 }
+.toggle-swapi-class{
+    display: inline-block;
+    height: 38px;
+}
