@@ -1,4 +1,5 @@
 import React, {Component} from "react";
+import {BrowserRouter as Router, Route} from "react-router-dom";
 import Header from "../Header";
 import RandomPlanet from "../RandomPlanet";
 import './StarApp.css';
@@ -49,16 +50,19 @@ export default class StarApp extends Component{
         return (
         <ErrorBoundary>
             <SwapiServiceProvider value={this.state.swapiService}>
-                <Header toggleSwapiService={this.toggleSwapiService}/>
-                {randomPlanet}
-                <div className="mb2 button-row">
-                    <button
-                        className="toggle-planet btn btn-warning btn-lg"
-                        onClick={this.toggleRandomPlanet}>
-                        Toggle Random Planet
-                    </button>
-                </div>
-                <PeoplePage/>
+                <Router>
+                    <Header toggleSwapiService={this.toggleSwapiService}/>
+                    {randomPlanet}
+                    <div className="mb2 button-row">
+                        <button
+                            className="toggle-planet btn btn-warning btn-lg"
+                            onClick={this.toggleRandomPlanet}>
+                            Toggle Random Planet
+                        </button>
+                    </div>
+                    <Route path="/" render={()=>"Welcome to the root"} exact/>
+                    <Route path="/people" component={PeoplePage}/>
+                </Router>
             </SwapiServiceProvider>
         </ErrorBoundary>);
     };
