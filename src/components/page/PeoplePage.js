@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import Row from "../Row";
 import {PersonList} from "../sw-components";
-import {withRouter} from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 
 const PeoplePage = ({history}) => {
     return (<PersonList onItemSelected={(itemId) => {
@@ -10,4 +10,4 @@ const PeoplePage = ({history}) => {
     }/>);
 };
 
-export default PeoplePage;
+export default withRouter(PeoplePage);

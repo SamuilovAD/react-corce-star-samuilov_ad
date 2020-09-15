@@ -1,2 +1,9 @@
 import PeoplePage from "./PeoplePage";
-export default PeoplePage;
+import LoginPage from "./LoginPage";
+import SecretPage from "./SecretPage";
+
+export {
+    PeoplePage,
+    LoginPage,
+    SecretPage
+};

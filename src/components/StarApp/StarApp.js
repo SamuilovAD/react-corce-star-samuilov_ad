@@ -14,14 +14,24 @@ import {
     SwapiServiceProvider,
 } from "../swapi-service-context";
 import DummySwapiService from "../../services/DummySwapiService";
-import PeoplePage from "../page";
+import {PeoplePage} from "../page";
+import LoginPage from "../page/LoginPage";
+import SecretPage from "../page/SecretPage";
+import {Switch, Redirect} from 'react-router-dom';
 
 export default class StarApp extends Component{
 
     state = {
         showRandomPlanet: true,
-        swapiService: new SwapiService()
+        swapiService: new SwapiService(),
+        isLoggedIn: false
     };
+
+    onLogin = () => {
+        this.setState({
+           isLoggedIn:true
+        });
+    }
 
     toggleRandomPlanet = () => {
         this.setState((state) => {
@@ -60,13 +70,18 @@ export default class StarApp extends Component{
                             Toggle Random Planet
                         </button>
                     </div>
-                    <Route path="/" render = {()=>"Welcome to the root"} exact/>
-                    <Route path="/people" exact component={PeoplePage}/>
-                    <Route path="/people/:id" render = {({match, location, history}) => {
-                        const id = match.params.id;
-                        console.log('id: '+id);
-                        return <PersonDetails itemId={id}/>;
-                    }}/>
+                    <Switch>
+                        <Route path="/" render = {()=>"Welcome to the root"} exact/>
+                        <Route path="/people" component={PeoplePage} exact/>
+                        <Route path="/people/:id" render = {({match, location, history}) => {
+                            const id = match.params.id;
+                            console.log('id: '+id);
+                            return <PersonDetails itemId={id}/>;
+                        }}/>
+                        <Route path="/login" render={() => <LoginPage isLoggedIn={this.state.isLoggedIn} onLogin={this.onLogin}/> }/>
+                        <Route path="/secret" render={() => <SecretPage isLoggedIn={this.state.isLoggedIn}/>}/>
+                        <Redirect to="/"/>
+                    </Switch>
                 </Router>
             </SwapiServiceProvider>
         </ErrorBoundary>);
