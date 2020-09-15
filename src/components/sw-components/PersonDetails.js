@@ -3,11 +3,11 @@ import ItemDetails,{Record} from "../ItemDetails";
 import withSwapiService from "../hoc-helpers/withSwapiService";
 
 const PersonDetails = ({itemId, getData,getImageUrl}) => {
-    console.log(itemId,getData);
+    console.log("ITEEEEEEEEMAS",itemId,getData);
     return (<ItemDetails
         itemId={itemId}
         getData={getData}
-        getImageUrl={getImageUrl} >
+        getImageUrl={getImageUrl}>
         <Record field="gender" label="Gender" />
         <Record field="eyeColor" label="Eye Color" />
     </ItemDetails>);

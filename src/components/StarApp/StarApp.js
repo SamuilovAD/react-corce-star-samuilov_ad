@@ -20,7 +20,7 @@ export default class StarApp extends Component{
 
     state = {
         showRandomPlanet: true,
-        swapiService: new DummySwapiService()
+        swapiService: new SwapiService()
     };
 
     toggleRandomPlanet = () => {
@@ -60,8 +60,13 @@ export default class StarApp extends Component{
                             Toggle Random Planet
                         </button>
                     </div>
-                    <Route path="/" render={()=>"Welcome to the root"} exact/>
-                    <Route path="/people" component={PeoplePage}/>
+                    <Route path="/" render = {()=>"Welcome to the root"} exact/>
+                    <Route path="/people" exact component={PeoplePage}/>
+                    <Route path="/people/:id" render = {({match, location, history}) => {
+                        const id = match.params.id;
+                        console.log('id: '+id);
+                        return <PersonDetails itemId={id}/>;
+                    }}/>
                 </Router>
             </SwapiServiceProvider>
         </ErrorBoundary>);
